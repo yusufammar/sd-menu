@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f8f8;
+}
+
+/* Sticky category slider */
+.toolbar {
+  /* position: sticky; */
+  /* z-index: 100/; */
+  top: 0;
+  background: rgba(16, 10, 1, 0.691) ;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-bottom: 1px solid #ddd;
+  height: max-content;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+}
+
+.logo{
+  display: content;
+  width:100px ;
+  height: 100px;
+}
+
+/* Sticky category slider */
+.category-slider {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 5px;
+  padding-top: 15px;
+
+  border-bottom: 1px solid #ddd;
+  height: fit-content;
+  scrollbar-width: none;
+}
+
+.category-slider button {
+  background: #eee;
+  border: none;
+  padding: 12px 20px;
+  margin-right: 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.category-slider button.active {
+  background: #222;
+  color: white;
+  transform: scale(1.025);
+  transition: 0.3s;
+}
+
+.lang-btn {
+  background: #eee;
+  border: none;
+  padding: 12px 20px;
+  margin-right: 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 100;
+  width: max-content;
+  height: min-content;
+  
+}
+
+.lang-btn.active {
+  background: #222;
+  color: white;
+  transform: scale(1.025);
+  transition: 0.3s;
+}
+
+.lang-btn-div{
+  width: 0.15%;
+}
+
+/* Menu Grid */
+.menu-container {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+/* Food Tile */
+.menu-item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.menu-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.menu-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+}
+
+.menu-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.menu-info p {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+  
+}
+
+.itemName{
+  font-size: 16px;
+    /* font-weight: 600; */
+}
+
+
+.itemPrice{
+  font-size: 14px;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .menu-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
