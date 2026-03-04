@@ -115,7 +115,7 @@ function renderItems(index) {
 
 
        div.innerHTML = `
-      <img src="images/${cat.category}_files/${item.image}.jpg" loading="lazy">
+      <img src="images/thumbnails/${item.image}.jpg" loading="lazy">
       <div class="menu-info">
         <a class="itemName">${itemName}</a> 
         <a class="itemPrice">${item.price}</a>
