@@ -90,7 +90,7 @@ function renderAllCategories() {
     const catContainer = document.createElement("div");
     catContainer.className = "category-content";
     catContainer.dataset.category = cat.category;
-    catContainer.style.display = index === currentCategoryIndex ? "block" : "none";
+    catContainer.style.display = index === currentCategoryIndex ? "grid" : "none";
 
     const items = menuData.find(m => m.category === cat.category)?.items || [];
     items.forEach(item => {
@@ -126,7 +126,7 @@ function switchCategory(index) {
   const nextCat = categoriesData[index].category;
 
   categoryDomCache[prevCat].style.display = "none";
-  categoryDomCache[nextCat].style.display = "block";
+  categoryDomCache[nextCat].style.display = "grid";
 
   document.querySelectorAll(".category-slider button").forEach(b => b.classList.remove("active"));
   slider.children[index].classList.add("active");
