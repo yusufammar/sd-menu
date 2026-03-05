@@ -1,170 +1,153 @@
-// ==============================
-// Global Variables
-// ==============================
-let menuData = [];        // Holds items from menu.json
-let categoriesData = [];  // Holds categories from categories.json
+let categoriesData = [];
+let menuData = [];
 let currentLanguage = "en";
-let currentCategoryIndex = 0;
+let currentMainIndex = 0;
+let currentSubIndex = 0;
 
-// Cache DOM elements
 const slider = document.getElementById("categorySlider");
+const contentWrapper = document.getElementById("contentWrapper");
+const subCategoryBar = document.getElementById("subCategoryBar");
+const subButtons = document.getElementById("sub");
 const container = document.getElementById("menuContainer");
-const categoryDomCache = {}; // store containers per category
 
-// ==============================
-// Language Button Helpers
-// ==============================
-function englishBtnActive() {
-  document.getElementById("btn-en").classList.add("active");
-  document.getElementById("btn-ar").classList.remove("active");
-}
+const btnEn = document.getElementById("btn-en");
+const btnAr = document.getElementById("btn-ar");
 
-function arabicBtnActive() {
-  document.getElementById("btn-ar").classList.add("active");
-  document.getElementById("btn-en").classList.remove("active");
-}
-
-// Initialize language
-englishBtnActive();
-
-// ==============================
-// Fetch Data
-// ==============================
+/* ================= Fetch Data ================= */
 Promise.all([
   fetch('categories.json').then(res => res.json()),
   fetch('menu.json').then(res => res.json())
-])
-.then(([categories, menu]) => {
-  categoriesData = categories.sort((a,b)=> a.order - b.order);
+]).then(([categories, menu]) => {
+  categoriesData = categories;
   menuData = menu;
-  createCategories();
-  renderAllCategories();
-  preloadImages();
-})
-.catch(err => console.error("Error loading JSON files:", err));
 
-// ==============================
-// Language Switch
-// ==============================
-document.getElementById("btn-en").addEventListener("click", () => {
-  if(currentLanguage === "en") return;
+  createMainCategories();
+  createSubCategories();
+  renderItems();
+});
+
+/* ================= Language Switch ================= */
+btnEn.onclick = () => {
+  if (currentLanguage === "en") return;
   currentLanguage = "en";
-  englishBtnActive();
+
   slider.dir = "ltr";
   container.dir = "ltr";
-  updateLanguage();
-});
+  contentWrapper.dir = "ltr";
+  
+  btnEn.classList.add("active");
+  btnAr.classList.remove("active");
+  refreshUI();
+};
 
-document.getElementById("btn-ar").addEventListener("click", () => {
-  if(currentLanguage === "ar") return;
+btnAr.onclick = () => {
+  if (currentLanguage === "ar") return;
   currentLanguage = "ar";
-  arabicBtnActive();
+
   slider.dir = "rtl";
   container.dir = "rtl";
-  updateLanguage();
-});
+  contentWrapper.dir = "rtl";
 
-// ==============================
-// Category Buttons
-// ==============================
-function createCategories() {
+  // subCategoryBar.dir='rtl';
+  // document.getElementsByClassName("sub").dir="rtl"
+  btnAr.classList.add("active");
+  btnEn.classList.remove("active");
+  refreshUI();
+};
+
+function refreshUI() {
+  createMainCategories();
+  createSubCategories();
+  renderItems();
+}
+
+/* ================= Main Categories ================= */
+function createMainCategories() {
   slider.innerHTML = "";
 
   categoriesData.forEach((cat, index) => {
     const btn = document.createElement("button");
-    btn.innerText = currentLanguage === "ar" ? cat.arabic_category : cat.category;
+    btn.textContent = currentLanguage === "ar"
+      ? cat.arabic_main_category
+      : cat.main_category;
 
-    if(index === currentCategoryIndex) btn.classList.add("active");
+    if (index === currentMainIndex) btn.classList.add("active");
 
-    btn.onclick = () => switchCategory(index);
+    btn.onclick = () => switchMainCategory(index);
 
     slider.appendChild(btn);
   });
 }
 
-// ==============================
-// Render Category Containers
-// ==============================
-function renderAllCategories() {
-  categoriesData.forEach((cat, index) => {
-    const catContainer = document.createElement("div");
-    catContainer.className = "category-content";
-    catContainer.dataset.category = cat.category;
-    catContainer.style.display = index === currentCategoryIndex ? "grid" : "none";
+function switchMainCategory(index) {
+  if (index === currentMainIndex) return;
+  currentMainIndex = index;
+  currentSubIndex = 0;
+  createMainCategories();
+  createSubCategories();
+  renderItems();
+}
 
-    const items = menuData.find(m => m.category === cat.category)?.items || [];
-    items.forEach(item => {
-      const itemName = currentLanguage === "ar" ? item.arabic_name : item.name;
-      const div = document.createElement("div");
-      div.className = "menu-item";
+/* ================= Sub Categories ================= */
+function createSubCategories() {
+  subCategoryBar.innerHTML = "";
 
-      div.innerHTML = `
-        <div class="menu-info">
-          <img src="images/${cat.category}_files/${item.image}.jpg"
-               alt="${itemName}" 
-               decoding="async" fetchpriority="low">
-          <a class="itemName">${itemName}</a>
-          <a class="itemPrice">${item.price}</a>
-        </div>
-      `;
+  const mainCat = categoriesData[currentMainIndex];
 
-      catContainer.appendChild(div);
-    });
+  mainCat.sub_categories.forEach((sub, index) => {
+    const btn = document.createElement("button");
+    btn.id = "sub"
 
-    container.appendChild(catContainer);
-    categoryDomCache[cat.category] = catContainer;
+    btn.textContent = currentLanguage === "ar"
+      ? sub.arabic_name
+      : sub.name;
+
+    if (index === currentSubIndex) btn.classList.add("active");
+
+    btn.onclick = () => switchSubCategory(index);
+
+    subCategoryBar.appendChild(btn);
   });
 }
 
-// ==============================
-// Switch Category
-// ==============================
-function switchCategory(index) {
-  if(index === currentCategoryIndex) return;
-
-  const prevCat = categoriesData[currentCategoryIndex].category;
-  const nextCat = categoriesData[index].category;
-
-  categoryDomCache[prevCat].style.display = "none";
-  categoryDomCache[nextCat].style.display = "grid";
-
-  document.querySelectorAll(".category-slider button").forEach(b => b.classList.remove("active"));
-  slider.children[index].classList.add("active");
-
-  currentCategoryIndex = index;
+function switchSubCategory(index) {
+  if (index === currentSubIndex) return;
+  currentSubIndex = index;
+  createSubCategories();
+  renderItems();
 }
 
-// ==============================
-// Update Language in All Containers
-// ==============================
-function updateLanguage() {
-  categoriesData.forEach(cat => {
-    const catContainer = categoryDomCache[cat.category];
-    const items = menuData.find(m => m.category === cat.category)?.items || [];
-    const children = catContainer.querySelectorAll(".menu-item");
+/* ================= Render Items ================= */
+function renderItems() {
+  container.innerHTML = "";
 
-    children.forEach((child, i) => {
-      const itemName = currentLanguage === "ar" ? items[i].arabic_name : items[i].name;
-      const price = items[i].price;
-      child.querySelector(".itemName").textContent = itemName;
-      child.querySelector(".itemPrice").textContent = price;
-    });
-  });
+  const mainCat = categoriesData[currentMainIndex].main_category;
+  const subCat = categoriesData[currentMainIndex]
+    .sub_categories[currentSubIndex].name;
 
-  // update category buttons
-  createCategories();
-}
+  const categoryData = menuData.find(m =>
+    m.main_category === mainCat &&
+    m.sub_category === subCat
+  );
 
-// ==============================
-// Preload Images
-// ==============================
-function preloadImages() {
-  categoriesData.forEach(cat => {
-    const items = menuData.find(m => m.category === cat.category)?.items || [];
-    items.forEach(item => {
-      const img = new Image();
-      img.src = `images/${cat.category}_files/${item.image}.jpg`;
-      img.decoding = "async";
-    });
+  const items = categoryData?.items || [];
+
+  items.forEach(item => {
+    const name = currentLanguage === "ar"
+      ? item.arabic_name
+      : item.name;
+
+    const div = document.createElement("div");
+    div.className = "menu-item";
+
+    div.innerHTML = `
+      <div class="menu-info">
+        <img src="images/${mainCat}/${subCat}/${item.image}.jpg" loading="lazy">
+        <div class="itemName">${name}</div>
+        <div class="itemPrice">${item.price}</div>
+      </div>
+    `;
+
+    container.appendChild(div);
   });
 }

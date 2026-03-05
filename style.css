@@ -2,29 +2,52 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f8f8f8;
+  /* overflow: hidden; */
 }
 
-/* Sticky category slider */
+/* Toolbar */
 .toolbar {
   /* position: sticky; */
-  /* z-index: 100/; */
   top: 0;
-  background: rgba(16, 10, 1, 0.691) ;
+  /* z-index: 2000; */
+  background: rgba(16, 10, 1, 0.85);
+  backdrop-filter: blur(6px);
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border-bottom: 1px solid #ddd;
-  height: max-content;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 40px;
+  padding: 10px 40px;
 }
 
-.logo{
-  display: content;
-  width:100px ;
-  height: 100px;
+.lang-btn {
+  background: #eee;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
 }
+
+.lang-btn.active {
+  background: #222;
+  color: white;
+}
+
+.logo img {
+  object-fit: contain;
+}
+
+/* Main Category Slider */
+/* .category-slider {
+  position: sticky;
+  top: 90px;
+  z-index: 1500;
+  background: white;
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  gap: 10px;
+  border-bottom: 1px solid #ddd;
+  scrollbar-width: none;
+} */
 
 /* Sticky category slider */
 .category-slider {
@@ -33,74 +56,109 @@ body {
   z-index: 1000;
   background: white;
   display: flex;
+  gap: 10px;
   overflow-x: auto;
   padding: 10px 5px;
   padding-top: 15px;
-
   border-bottom: 1px solid #ddd;
   height: fit-content;
   scrollbar-width: none;
 }
 
+
+.category-slider::-webkit-scrollbar {
+  display: none;
+}
+
 .category-slider button {
   background: #eee;
   border: none;
-  padding: 12px 20px;
-  margin-right: 10px;
+  padding: 10px 18px;
   border-radius: 20px;
-  white-space: nowrap;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 100;
+  white-space: nowrap;
 }
 
 .category-slider button.active {
   background: #222;
   color: white;
-  transform: scale(1.025);
-  transition: 0.3s;
 }
 
-.lang-btn {
-  background: #eee;
-  border: none;
-  padding: 12px 20px;
-  margin-right: 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 100;
-  width: max-content;
-  height: min-content;
-  
+/* Make wrapper a flex container with independent scroll */
+.content-wrapper {
+  display: flex;
+  /* min-height: calc(100vh - 150px); */
+  /* position: relative; important */
+  overflow: hidden
 }
 
-.lang-btn.active {
-  background: #222;
-  color: white;
-  transform: scale(1.025);
-  transition: 0.3s;
-}
+/* Fixed / non-scrolling left sidebar */
+.sub-category-bar {
 
-.lang-btn-div{
-  width: 0.15%;
-}
-
-/* Menu Grid */
-.category-content {
+  width: 150px;
+  background: white;
+  border-right: 1px solid #ddd;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 30px;
+
+  position: sticky;
+  /* or fixed */
+  top: 150px;
+  /* height of toolbar + main slider */
+  align-self: flex-start;
+  /* keep at top */
+  /* height: 100vh; */
+  height: calc(100vh - 220px);
+  max-height: calc(100vh - 220px);
+  overflow: hidden;
+}
+
+/* Items grid scrolls independently */
+.menu-container {
+  width: 70%;
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
+
+  overflow-y: auto;
+  /* enable scroll */
+  max-height: calc(100vh - 220px);
+  height: min-content;
 }
 
-/* Food Tile */
+
+.sub-category-bar button {
+  background: #eee;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sub-category-bar button.active {
+  background: #222;
+  color: white;
+}
+
+
+
 .menu-item {
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+  height: min-content;
+}
+
+.menu-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item img {
@@ -113,35 +171,24 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
-
+  gap: 8px;
 }
 
-.menu-info h3 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
+.itemName {
+  font-size: 15px;
 }
 
-.menu-info p {
-  margin: 0;
-  font-weight: bold;
-  color: #333;
-  
-}
-
-.itemName{
-  font-size: 16px;
-    /* font-weight: 600; */
-}
-
-
-.itemPrice{
+.itemPrice {
   font-size: 14px;
+  font-weight: bold;
 }
 
-/* Desktop */
-@media (min-width: 768px) {
-  .menu-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
+/* RTL Support
+[dir="rtl"] .menu-info {
+  text-align: right;
 }
+
+[dir="rtl"] .sub-category-bar {
+  border-right: none;
+  border-left: 1px solid #ddd;
+} */

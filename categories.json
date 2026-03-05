@@ -1,67 +1,18 @@
 [
   {
-    "order": 1,
-    "category": "Soups",
-    "arabic_category": "شوربة"
+    "main_category": "Food",
+    "arabic_main_category": "طعام",
+    "sub_categories": [
+      { "name": "Burgers", "arabic_name": "برجر" },
+      { "name": "Pasta", "arabic_name": "باستا" }
+    ]
   },
   {
-    "order": 2,
-    "category": "Salads",
-    "arabic_category": "سلطات"
-  },
-  {
-    "order": 3,
-    "category": "Sandwiches",
-    "arabic_category": "سندوتشات"
-  },
-  {
-    "order": 4,
-    "category": "Special Dishes",
-    "arabic_category": "أطباق خاصة"
-  },
-  {
-    "order": 5,
-    "category": "Tajiens",
-    "arabic_category": "طواجن"
-  },
-  {
-    "order": 6,
-    "category": "Fatta",
-    "arabic_category": "فتة"
-  },
-  {
-    "order": 7,
-    "category": "Rice & Pasta",
-    "arabic_category": "أرز ومكرونة"
-  },
-  {
-    "order": 8,
-    "category": "Grilled Beef",
-    "arabic_category": "لحم مشوي"
-  },
-  {
-    "order": 9,
-    "category": "Grilled Chicken",
-    "arabic_category": "فراخ مشوية"
-  },
-  {
-    "order": 10,
-    "category": "Mix Grill",
-    "arabic_category": "مشويات مشكلة"
-  },
-  {
-    "order": 11,
-    "category": "Savoury Fateer",
-    "arabic_category": "فطير حادق"
-  },
-  {
-    "order": 12,
-    "category": "Sweet Fateer",
-    "arabic_category": "فطير حلو"
-  },
-  {
-    "order": 13,
-    "category": "Desserts",
-    "arabic_category": "حلويات"
+    "main_category": "Drinks",
+    "arabic_main_category": "مشروبات",
+    "sub_categories": [
+      { "name": "Hot Drinks", "arabic_name": "مشروبات ساخنة" },
+      { "name": "Cold Drinks", "arabic_name": "مشروبات باردة" }
+    ]
   }
 ]

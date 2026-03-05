@@ -1,802 +1,133 @@
 [
   {
-    "category": "Desserts",
+    "main_category": "Food",
+    "sub_category": "Burgers",
     "items": [
       {
-        "name": "Rice Pudding",
-        "price": "13,25 SR",
-        "image": "rice pudding",
-        "description": "Description Here",
-        "arabic_name": "رز بلبن",
-        "arabic_description": "الوصف هنا"
+        "name": "Classic Burger",
+        "arabic_name": "برجر كلاسيك",
+        "price": "25",
+        "image": "classic_burger"
       },
       {
-        "name": "Rice Pudding With Nuts",
-        "price": "14,95 SR",
-        "image": "rice pudding with nuts",
-        "description": "Description Here",
-        "arabic_name": "رز بلبن بالمكسرات",
-        "arabic_description": "الوصف هنا"
+        "name": "Cheese Burger",
+        "arabic_name": "برجر بالجبن",
+        "price": "28",
+        "image": "cheese_burger"
       },
       {
-        "name": "Umm Aly",
-        "price": "25,15 SR",
-        "image": "umm aly",
-        "description": "Description Here",
-        "arabic_name": "أم علي",
-        "arabic_description": "الوصف هنا"
+        "name": "Chicken Burger",
+        "arabic_name": "برجر دجاج",
+        "price": "27",
+        "image": "chicken_burger"
+      },
+        {
+        "name": "Classic Burger",
+        "arabic_name": "برجر كلاسيك",
+        "price": "25",
+        "image": "classic_burger"
+      },
+      {
+        "name": "Cheese Burger",
+        "arabic_name": "برجر بالجبن",
+        "price": "28",
+        "image": "cheese_burger"
+      },
+      {
+        "name": "Chicken Burger",
+        "arabic_name": "برجر دجاج",
+        "price": "27",
+        "image": "chicken_burger"
       }
     ]
   },
   {
-    "category": "Fatta",
+    "main_category": "Food",
+    "sub_category": "Pasta",
     "items": [
       {
-        "name": "Fattah Sada",
-        "price": "19,00 SR",
-        "image": "fattah sada",
-        "description": "Description Here",
-        "arabic_name": "فتة سادة",
-        "arabic_description": "الوصف هنا"
+        "name": "Spaghetti Bolognese",
+        "arabic_name": "سباغيتي بولونيز",
+        "price": "30",
+        "image": "spaghetti_bolognese"
       },
       {
-        "name": "Fatah Meat",
-        "price": "64,00 SR",
-        "image": "fatah meat",
-        "description": "Description Here",
-        "arabic_name": "فتة باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Fatah Kaware",
-        "price": "74,00 SR",
-        "image": "fatah kaware",
-        "description": "Description Here",
-        "arabic_name": "فتة كوارع",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Fatah Mozaa",
-        "price": "79,50 SR",
-        "image": "fatah mozaa",
-        "description": "Description Here",
-        "arabic_name": "فتة موزة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Mozaa",
-        "price": "79,50 SR",
-        "image": "grilled mozaa",
-        "description": "Description Here",
-        "arabic_name": "موزة مشوية",
-        "arabic_description": "الوصف هنا"
+        "name": "Fettuccine Alfredo",
+        "arabic_name": "فيتوتشيني ألفريدو",
+        "price": "32",
+        "image": "fettuccine_alfredo"
       }
     ]
   },
   {
-    "category": "Grilled Beef",
+    "main_category": "Drinks",
+    "sub_category": "Hot Drinks",
     "items": [
       {
-        "name": "Kofta",
-        "price": "45,00 SR",
-        "image": "kofta",
-        "description": "Description Here",
-        "arabic_name": "كفتة",
-        "arabic_description": "الوصف هنا"
+        "name": "Espresso",
+        "arabic_name": "إسبريسو",
+        "price": "10",
+        "image": "espresso"
       },
       {
-        "name": "Sajouk",
-        "price": "47,00 SR",
-        "image": "sajouk",
-        "description": "Description Here",
-        "arabic_name": "سجق",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Kabab",
-        "price": "49,00 SR",
-        "image": "kabab",
-        "description": "Description Here",
-        "arabic_name": "كباب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Liver & Kidneys",
-        "price": "49,00 SR",
-        "image": "liver & kidneys",
-        "description": "Description Here",
-        "arabic_name": "كبدة وكلاوي",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tarb",
-        "price": "51,00 SR",
-        "image": "tarb",
-        "description": "Description Here",
-        "arabic_name": "طرب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Beef Slices",
-        "price": "60,00 SR",
-        "image": "grilled beef slices",
-        "description": "Description Here",
-        "arabic_name": "شرائح لحمة مشوية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Ribs",
-        "price": "65,00 SR",
-        "image": "ribs",
-        "description": "Description Here",
-        "arabic_name": "ريش مشوية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Nefa",
-        "price": "68,00 SR",
-        "image": "grilled nefa",
-        "description": "Description Here",
-        "arabic_name": "نيفة مشوية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Lamb Slices",
-        "price": "83,00 SR",
-        "image": "grilled lamb slices",
-        "description": "Description Here",
-        "arabic_name": "شرائح ضاني مشوية",
-        "arabic_description": "الوصف هنا"
+        "name": "Cappuccino",
+        "arabic_name": "كابتشينو",
+        "price": "12",
+        "image": "cappuccino"
       }
     ]
   },
   {
-    "category": "Grilled Chicken",
+    "main_category": "Drinks",
+    "sub_category": "Cold Drinks",
     "items": [
       {
-        "name": "Chicken Mesahab 1/2Pc",
-        "price": "29,00 SR",
-        "image": "chicken mesahab 1-2pc",
-        "description": "Description Here",
-        "arabic_name": "فراخ مسحب نص فرخة",
-        "arabic_description": "الوصف هنا"
+        "name": "Lemonade",
+        "arabic_name": "ليمونادة",
+        "price": "8",
+        "image": "lemonade"
       },
       {
-        "name": "Chicken Shish (Charcoal)",
-        "price": "35,35 SR",
-        "image": "chicken shish (charcoal)",
-        "description": "Description Here",
-        "arabic_name": "شيش فراخ (على الفحم)",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Shish Tawook",
-        "price": "38,00 SR",
-        "image": "shish tawook",
-        "description": "Description Here",
-        "arabic_name": "شيش طاووق",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Chicken Kabab",
-        "price": "39,00 SR",
-        "image": "chicken kabab",
-        "description": "Description Here",
-        "arabic_name": "كباب فراخ",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Quail 2Pcs",
-        "price": "45,00 SR",
-        "image": "grilled quail 2pcs",
-        "description": "Description Here",
-        "arabic_name": "سمان مشوي ٢ قطعة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Pigeon 1 Pcs M",
-        "price": "50,00 SR",
-        "image": "grilled pigeon 1 pcs m",
-        "description": "Description Here",
-        "arabic_name": "حمام مشوي ١ قطعة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grilled Quail 3 Pcs",
-        "price": "60,95 SR",
-        "image": "grilled quail 3 pcs",
-        "description": "Description Here",
-        "arabic_name": "سمان مشوي ٣ قطع",
-        "arabic_description": "الوصف هنا"
+        "name": "Iced Coffee",
+        "arabic_name": "قهوة مثلجة",
+        "price": "15",
+        "image": "iced_coffee"
       }
     ]
   },
   {
-    "category": "Mix Grill",
+    "main_category": "Desserts",
+    "sub_category": "Cakes",
     "items": [
       {
-        "name": "Mix Grill W Ribs",
-        "price": "112,00 SR",
-        "image": "mix grill w ribs",
-        "description": "Description Here",
-        "arabic_name": "مشاوي مشكلة مع ريش",
-        "arabic_description": "الوصف هنا"
+        "name": "Chocolate Cake",
+        "arabic_name": "كعكة الشوكولاتة",
+        "price": "20",
+        "image": "chocolate_cake"
       },
       {
-        "name": "Kabab & Kofta",
-        "price": "47,00 SR",
-        "image": "kabab & kofta",
-        "description": "Description Here",
-        "arabic_name": "كباب وكفتة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Grill W Tarb",
-        "price": "54,00 SR",
-        "image": "mix grill w tarb",
-        "description": "Description Here",
-        "arabic_name": "مشاوي مشكلة مع طرب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Grill W Tawouq",
-        "price": "57,00 SR",
-        "image": "mix grill w tawouq",
-        "description": "Description Here",
-        "arabic_name": "مشاوي مشكلة مع طاووق",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Grill W Sujouk",
-        "price": "68,85 SR",
-        "image": "mix grill w sujouk",
-        "description": "Description Here",
-        "arabic_name": "مشاوي مشكلة مع سجق",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Grill Beef",
-        "price": "73,50 SR",
-        "image": "mix grill beef",
-        "description": "Description Here",
-        "arabic_name": "مشاوي مشكلة لحمة",
-        "arabic_description": "الوصف هنا"
+        "name": "Cheesecake",
+        "arabic_name": "تشيز كيك",
+        "price": "22",
+        "image": "cheesecake"
       }
     ]
   },
   {
-    "category": "Rice & Pasta",
+    "main_category": "Desserts",
+    "sub_category": "Ice Cream",
     "items": [
       {
-        "name": "Rice W Livers & Kidney",
-        "price": "31,00 SR",
-        "image": "rice w livers & kidney",
-        "description": "Description Here",
-        "arabic_name": "رز بكبدة وكلاوي",
-        "arabic_description": "الوصف هنا"
+        "name": "Vanilla Ice Cream",
+        "arabic_name": "آيس كريم فانيليا",
+        "price": "12",
+        "image": "vanilla_ice_cream"
       },
       {
-        "name": "Oven Pasta",
-        "price": "33,00 SR",
-        "image": "oven pasta",
-        "description": "Description Here",
-        "arabic_name": "مكرونة في الفرن",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Vermacelli Rice",
-        "price": "9,20 SR",
-        "image": "vermacelli rice",
-        "description": "Description Here",
-        "arabic_name": "رز بشعرية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "White Rice",
-        "price": "9,20 SR",
-        "image": "white rice",
-        "description": "Description Here",
-        "arabic_name": "رز أبيض",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Salads",
-    "items": [
-      {
-        "name": "Pickled Eggplant",
-        "price": "10,35 SR",
-        "image": "pickled eggplant",
-        "description": "Description Here",
-        "arabic_name": "مخلل بتنجان",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Baba Ghanoogh",
-        "price": "10,85 SR",
-        "image": "baba ghanoogh",
-        "description": "Description Here",
-        "arabic_name": "بابا غنوج",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Cumined Tomatoes",
-        "price": "10,85 SR",
-        "image": "cumined tomatoes",
-        "description": "Description Here",
-        "arabic_name": "طماطم بالكمون",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Green Salad",
-        "price": "10,85 SR",
-        "image": "green salad",
-        "description": "Description Here",
-        "arabic_name": "سلطة خضرا",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tahini",
-        "price": "10,89 SR",
-        "image": "tahini",
-        "description": "Description Here",
-        "arabic_name": "طحينة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Salad",
-        "price": "27,00 SR",
-        "image": "mix salad",
-        "description": "Description Here",
-        "arabic_name": "سلطة مشكلة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pickles",
-        "price": "8,05 SR",
-        "image": "pickles",
-        "description": "Description Here",
-        "arabic_name": "مخللات",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Sandwiches",
-    "items": [
-      {
-        "name": "Shish Sandwich",
-        "price": "21,00 SR",
-        "image": "shish sandwich",
-        "description": "Description Here",
-        "arabic_name": "ساندوتش شيش",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Chicken Kebab Sandwich",
-        "price": "21,00 SR",
-        "image": "chicken kebab sandwich",
-        "description": "Description Here",
-        "arabic_name": "ساندوتش كباب فراخ",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Kofta Sandwich",
-        "price": "23,00 SR",
-        "image": "kofta sandwich",
-        "description": "Description Here",
-        "arabic_name": "ساندوتش كفتة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Kebab Sandwich",
-        "price": "26,00 SR",
-        "image": "kebab sandwich",
-        "description": "Description Here",
-        "arabic_name": "ساندوتش كباب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tarb Sandwich",
-        "price": "26,00 SR",
-        "image": "tarb sandwich",
-        "description": "Description Here",
-        "arabic_name": "ساندوتش طرب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Hawawshi Shajarat Al Durr",
-        "price": "29,00 SR",
-        "image": "hawawshi shajarat al durr",
-        "description": "Description Here",
-        "arabic_name": "حواوشي شجرة الدر",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Hawawshi Sojok",
-        "price": "29,00 SR",
-        "image": "hawawshi sojok",
-        "description": "Description Here",
-        "arabic_name": "حواوشي سجق",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Savoury Fateer",
-    "items": [
-      {
-        "name": "Make Your Fater",
-        "price": "28,75 SR",
-        "image": "make your fater",
-        "description": "Description Here",
-        "arabic_name": "اعمل فطيرتك",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Veg",
-        "price": "30,47 SR",
-        "image": "pie veg",
-        "description": "Description Here",
-        "arabic_name": "فطيرة خضار",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Mix Cheese",
-        "price": "35,65 SR",
-        "image": "pie mix cheese",
-        "description": "Description Here",
-        "arabic_name": "فطيرة مشكل جبن",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Meshaltet",
-        "price": "57,50 SR",
-        "image": "pie meshaltet",
-        "description": "Description Here",
-        "arabic_name": "فطيرة مشلتت",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Shajaret Aldurr",
-        "price": "57,50 SR",
-        "image": "pie shajaret aldurr",
-        "description": "Description Here",
-        "arabic_name": "فطيرة شجرة الدر",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Soups",
-    "items": [
-      {
-        "name": "Orzo Soup",
-        "price": "13,00 SR",
-        "image": "orzo soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة لسان عصفور",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Vegetables Soup",
-        "price": "13,50 SR",
-        "image": "vegetables soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة خضار",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Lentil Soup",
-        "price": "17,00 SR",
-        "image": "lentil soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة عدس",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Vermicelli Veg Soup",
-        "price": "17,00 SR",
-        "image": "vermicelli veg soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة خضار بشعرية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pigeon Soup",
-        "price": "32,00 SR",
-        "image": "pigeon soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة حمام",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Kaware Soup",
-        "price": "41,00 SR",
-        "image": "kaware soup",
-        "description": "Description Here",
-        "arabic_name": "شوربة كوارع",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Special Dishes",
-    "items": [
-      {
-        "name": "Potato Dippers",
-        "price": "10,85 SR",
-        "image": "potato dippers",
-        "description": "Description Here",
-        "arabic_name": "بطاطس ديبرز",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Grapes Leaves",
-        "price": "33,00 SR",
-        "image": "grapes leaves",
-        "description": "Description Here",
-        "arabic_name": "ورق عنب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mix Dulmah",
-        "price": "34,35 SR",
-        "image": "mix dulmah",
-        "description": "Description Here",
-        "arabic_name": "دولمة مشكلة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Malfouf",
-        "price": "37,00 SR",
-        "image": "malfouf",
-        "description": "Description Here",
-        "arabic_name": "محشي كرنب",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Musaqaah Meat & Cheese",
-        "price": "37,50 SR",
-        "image": "musaqaah meat & cheese",
-        "description": "Description Here",
-        "arabic_name": "مسقعة باللحمة والجبنة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Gollash With Meat Order",
-        "price": "38,00 SR",
-        "image": "gollash with meat order",
-        "description": "Description Here",
-        "arabic_name": "جلاش باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Roasted Chicken(1/2)",
-        "price": "43,00 SR",
-        "image": "roasted chicken(1-2)",
-        "description": "Description Here",
-        "arabic_name": "نص فرخة مشوية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Mombaar 5 Pcs",
-        "price": "47,00 SR",
-        "image": "mombaar 5 pcs",
-        "description": "Description Here",
-        "arabic_name": "ممبار ٥ قطع",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Taset Sujok",
-        "price": "48,00 SR",
-        "image": "taset sujok",
-        "description": "Description Here",
-        "arabic_name": "طاسة سجق",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Kebda Askndarany",
-        "price": "55,00 SR",
-        "image": "kebda askndarany",
-        "description": "Description Here",
-        "arabic_name": "كبدة إسكندراني",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Stuffed Pigeon Freek",
-        "price": "63,00 SR",
-        "image": "stuffed pigeon freek",
-        "description": "Description Here",
-        "arabic_name": "حمام محشي فريك",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Stuffed Pigeon Rice",
-        "price": "63,00 SR",
-        "image": "stuffed pigeon rice",
-        "description": "Description Here",
-        "arabic_name": "حمام محشي رز",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Meat Paper",
-        "price": "64,00 SR",
-        "image": "meat paper",
-        "description": "Description Here",
-        "arabic_name": "رقاق لحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Roqaq Tray With Minced Meat",
-        "price": "65,00 SR",
-        "image": "a tray of roqaq with minced meat",
-        "description": "Description Here",
-        "arabic_name": "صينية رقاق باللحمة المفرومة",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Sweet Fateer",
-    "items": [
-      {
-        "name": "Custard",
-        "price": "24,15 SR",
-        "image": "custard",
-        "description": "Description Here",
-        "arabic_name": "كاستر",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Sugar & Milk",
-        "price": "24,15 SR",
-        "image": "sugar & milk",
-        "description": "Description Here",
-        "arabic_name": "سكر ولبن",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Bogasha",
-        "price": "26,45 SR",
-        "image": "bogasha",
-        "description": "Description Here",
-        "arabic_name": "بقاشة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Chocolate",
-        "price": "34,50 SR",
-        "image": "pie chocolate",
-        "description": "Description Here",
-        "arabic_name": "فطيرة شوكولاتة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Pie Shajarat Aldurr Sweet",
-        "price": "46,00 SR",
-        "image": "pie shajarat aldurr sweet",
-        "description": "Description Here",
-        "arabic_name": "فطيرة شجرة الدر حلو",
-        "arabic_description": "الوصف هنا"
-      }
-    ]
-  },
-  {
-    "category": "Tajiens",
-    "items": [
-      {
-        "name": "Okra",
-        "price": "20,70 SR",
-        "image": "okra",
-        "description": "Description Here",
-        "arabic_name": "بامية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Molokhia",
-        "price": "22,00 SR",
-        "image": "molokhia",
-        "description": "Description Here",
-        "arabic_name": "ملوخية",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tajen Plain Potatoes",
-        "price": "24,00 SR",
-        "image": "tajen plain potatoes",
-        "description": "Description Here",
-        "arabic_name": "طاجن بطاطس سادة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tajin Moamar Rice",
-        "price": "28,75 SR",
-        "image": "tajin moamar rice",
-        "description": "Description Here",
-        "arabic_name": "طاجن رز معمر",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Molokhia With Chicken",
-        "price": "57,50 SR",
-        "image": "molokhia with chicken",
-        "description": "Description Here",
-        "arabic_name": "ملوخية بالفراخ",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Moamer Rice W Pigeon",
-        "price": "59,00 SR",
-        "image": "moamer rice w pigeon",
-        "description": "Description Here",
-        "arabic_name": "رز معمر بالحمام",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Rice Moamer W Meat",
-        "price": "59,00 SR",
-        "image": "rice moamer w meat",
-        "description": "Description Here",
-        "arabic_name": "رز معمر باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Meat Potatoes",
-        "price": "64,00 SR",
-        "image": "meat potatoes",
-        "description": "Description Here",
-        "arabic_name": "بطاطس باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Molokhia With Meat",
-        "price": "64,00 SR",
-        "image": "molokhia with meat",
-        "description": "Description Here",
-        "arabic_name": "ملوخية باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Vine Leaves W Shin",
-        "price": "70,00 SR",
-        "image": "vine leaves w shin",
-        "description": "Description Here",
-        "arabic_name": "ورق عنب بشِن",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Peas With Meat Tajin",
-        "price": "70,00 SR",
-        "image": "peas with meat tajin",
-        "description": "Description Here",
-        "arabic_name": "طاجن بسلة باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Okra With Meat",
-        "price": "75,00 SR",
-        "image": "okra with meat",
-        "description": "Description Here",
-        "arabic_name": "بامية باللحمة",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Akawi",
-        "price": "79,00 SR",
-        "image": "akawi",
-        "description": "Description Here",
-        "arabic_name": "عكاوي",
-        "arabic_description": "الوصف هنا"
-      },
-      {
-        "name": "Tajen Shajaret Aldurr",
-        "price": "99,10 SR",
-        "image": "tajen shajaret aldurr",
-        "description": "Description Here",
-        "arabic_name": "طاجن شجرة الدر",
-        "arabic_description": "الوصف هنا"
+        "name": "Chocolate Ice Cream",
+        "arabic_name": "آيس كريم شوكولاتة",
+        "price": "13",
+        "image": "chocolate_ice_cream"
       }
     ]
   }
