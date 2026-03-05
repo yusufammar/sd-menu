@@ -1,18 +1,84 @@
 [
   {
-    "main_category": "Food",
-    "arabic_main_category": "طعام",
+    "category": "Starters",
+    "arabic_category": "مقبلات",
     "sub_categories": [
-      { "name": "Burgers", "arabic_name": "برجر" },
-      { "name": "Pasta", "arabic_name": "باستا" }
+      {
+        "name": "Soups",
+        "arabic_name": "شوربة"
+      },
+      {
+        "name": "Salads",
+        "arabic_name": "سلطات"
+      }
     ]
   },
   {
-    "main_category": "Drinks",
-    "arabic_main_category": "مشروبات",
+    "category": "Egyptian Dishes",
+    "arabic_category": "الأطباق المصرية",
     "sub_categories": [
-      { "name": "Hot Drinks", "arabic_name": "مشروبات ساخنة" },
-      { "name": "Cold Drinks", "arabic_name": "مشروبات باردة" }
+      {
+        "name": "Special Dishes",
+        "arabic_name": "أطباق خاصة"
+      },
+      {
+        "name": "Tajiens",
+        "arabic_name": "طواجن"
+      },
+      {
+        "name": "Fatta",
+        "arabic_name": "فتة"
+      },
+      {
+        "name": "Rice & Pasta",
+        "arabic_name": "أرز ومكرونة"
+      }
+    ]
+  },
+  {
+    "category": "Grills & Barbecue",
+    "arabic_category": "المشاوي",
+    "sub_categories": [
+      {
+        "name": "Grilled Beef",
+        "arabic_name": "لحم مشوي"
+      },
+      {
+        "name": "Grilled Chicken",
+        "arabic_name": "فراخ مشوية"
+      },
+      {
+        "name": "Mix Grill",
+        "arabic_name": "مشويات مشكلة"
+      },
+      {
+        "name": "Sandwiches",
+        "arabic_name": "سندوتشات"
+      }
+    ]
+  },
+  {
+    "category": "Fateer",
+    "arabic_category": "الفطير",
+    "sub_categories": [
+      {
+        "name": "Savoury Fateer",
+        "arabic_name": "فطير حادق"
+      },
+      {
+        "name": "Sweet Fateer",
+        "arabic_name": "فطير حلو"
+      }
+    ]
+  },
+  {
+    "category": "Desserts",
+    "arabic_category": "حلويات",
+    "sub_categories": [
+      {
+        "name": "Desserts",
+        "arabic_name": "حلويات"
+      }
     ]
   }
 ]

@@ -1,50 +1,55 @@
 const XLSX = require("xlsx");
 const fs = require("fs");
 
-// Read Excel file
+// Load Excel file
 const workbook = XLSX.readFile("items.xlsx");
 
-// Get first sheet name
+// Get first sheet
 const sheetName = workbook.SheetNames[0];
+const sheet = workbook.Sheets[sheetName];
 
-// Convert sheet to JSON
-const sheet = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {
-  defval: ""
-});
+// Convert sheet to JSON rows
+const rows = XLSX.utils.sheet_to_json(sheet);
 
-// Transform to required grouped format
-const grouped = sheet.reduce((acc, row) => {
-  const categoryName = row.Category?.trim();
-  const itemName = row.Name?.trim();
-  const itemPrice = row.Price?.toString().replace("SAR", "SR").trim();
+// Object to group categories
+const grouped = {};
 
-  if (!categoryName) return acc;
+// Loop through rows
+rows.forEach(row => {
 
-  // Check if category already exists
-  let category = acc.find(c => c.category === categoryName);
+  const mainCategory = row["Category"];
+  const subCategory = row["Subcategory"];
 
-  if (!category) {
-    category = {
-      category: categoryName,
+  const key = `${mainCategory}__${subCategory}`;
+
+  if (!grouped[key]) {
+    grouped[key] = {
+      category: mainCategory,
+      sub_category: subCategory,
       items: []
     };
-    acc.push(category);
   }
 
-  category.items.push({
-    name: itemName,
-    price: itemPrice,
-    image: row.Image.trim(),
-    description: row.Description.trim(),
-    arabic_name: row.Arabic_Name.trim(),
-    arabic_description: row.Arabic_Description.trim()
-
+  grouped[key].items.push({
+    name: row["Name"],                     // using image column as name
+    arabic_name: row["Arabic_Name"],
+    image: row["Image"],
+    price: row["Price"],
+    description: row["Description"],
+    arabic_description: row["Arabic_Description"],
+    kcal: row["Kcal"]
   });
 
-  return acc;
-}, []);
+});
 
-// Write to JSON file
-fs.writeFileSync("menu.json", JSON.stringify(grouped, null, 2));
+// Convert grouped object to array
+const result = Object.values(grouped);
 
-console.log("✅ Conversion completed!");
+// Save JSON
+fs.writeFileSync(
+  "menu.json",
+  JSON.stringify(result, null, 2),
+  "utf8"
+);
+
+console.log("✅ menu.json generated successfully!");

@@ -68,8 +68,8 @@ function createMainCategories() {
   categoriesData.forEach((cat, index) => {
     const btn = document.createElement("button");
     btn.textContent = currentLanguage === "ar"
-      ? cat.arabic_main_category
-      : cat.main_category;
+      ? cat.arabic_category
+      : cat.category;
 
     if (index === currentMainIndex) btn.classList.add("active");
 
@@ -121,12 +121,12 @@ function switchSubCategory(index) {
 function renderItems() {
   container.innerHTML = "";
 
-  const mainCat = categoriesData[currentMainIndex].main_category;
+  const mainCat = categoriesData[currentMainIndex].category;
   const subCat = categoriesData[currentMainIndex]
     .sub_categories[currentSubIndex].name;
 
   const categoryData = menuData.find(m =>
-    m.main_category === mainCat &&
+    m.category === mainCat &&
     m.sub_category === subCat
   );
 
@@ -142,7 +142,7 @@ function renderItems() {
 
     div.innerHTML = `
       <div class="menu-info">
-        <img src="images/${mainCat}/${subCat}/${item.image}.jpg" loading="lazy">
+        <img src="images/${subCat}_files/${item.image}.jpg" loading="lazy">
         <div class="itemName">${name}</div>
         <div class="itemPrice">${item.price}</div>
       </div>

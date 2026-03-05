@@ -1,24 +1,65 @@
-const XLSX = require('xlsx');
-const fs = require('fs');
+const XLSX = require("xlsx");
+const fs = require("fs");
 
-// Load Excel file
-const workbook = XLSX.readFile('categories.xlsx');
+/* -----------------------
+   Load Excel Files
+----------------------- */
 
-// Get first sheet
-const sheetName = workbook.SheetNames[0];
-const sheet = workbook.Sheets[sheetName];
+const categoriesWorkbook = XLSX.readFile("categories.xlsx");
+const subcategoriesWorkbook = XLSX.readFile("subcategories.xlsx");
 
-// Convert sheet to JSON
-const data = XLSX.utils.sheet_to_json(sheet);
+const categoriesSheet = categoriesWorkbook.Sheets[categoriesWorkbook.SheetNames[0]];
+const subcategoriesSheet = subcategoriesWorkbook.Sheets[subcategoriesWorkbook.SheetNames[0]];
 
-// Optional: map fields to your desired keys
-const jsonData = data.map(row => ({
-  order: row.Order,
-  category: row.Category,
-  arabic_category: row.Arabic_Category
-}));
+const categoriesRows = XLSX.utils.sheet_to_json(categoriesSheet);
+const subcategoriesRows = XLSX.utils.sheet_to_json(subcategoriesSheet);
 
-// Save as JSON
-fs.writeFileSync('categories.json', JSON.stringify(jsonData, null, 2), 'utf8');
+/* -----------------------
+   Build Categories Map
+----------------------- */
 
-console.log('categories.json created from Excel successfully!');
+const categoriesMap = {};
+
+// Create base categories
+categoriesRows.forEach(row => {
+  const categoryName = row["Category"];
+
+  categoriesMap[categoryName] = {
+    order: row["Order"],
+    category: categoryName,
+    arabic_category: row["Arabic_Category"],
+    sub_categories: []
+  };
+});
+
+// Attach subcategories
+subcategoriesRows.forEach(row => {
+  const categoryName = row["Category"];
+
+  if (categoriesMap[categoryName]) {
+    categoriesMap[categoryName].sub_categories.push({
+      name: row["Subcategory"],
+      arabic_name: row["Arabic_Subcategory"]
+    });
+  }
+});
+
+/* -----------------------
+   Convert to Sorted Array
+----------------------- */
+
+const result = Object.values(categoriesMap)
+  .sort((a, b) => a.order - b.order)
+  .map(({ order, ...rest }) => rest); // remove order field
+
+/* -----------------------
+   Save JSON
+----------------------- */
+
+fs.writeFileSync(
+  "categories.json",
+  JSON.stringify(result, null, 2),
+  "utf8"
+);
+
+console.log("✅ categories.json created successfully");
