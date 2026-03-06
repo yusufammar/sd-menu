@@ -82,6 +82,8 @@ body {
 .category-slider button.active {
   background: #222;
   color: white;
+  transition: 0.2s;
+  transform: scale(1.05);
 }
 
 /* Make wrapper a flex container with independent scroll */
@@ -121,7 +123,7 @@ body {
   /* width: 100vh; */
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180 px, 1fr));
   gap: 15px;
 
   overflow-y: auto;
@@ -152,6 +154,8 @@ body {
 .sub-category-bar button.active {
   background: #222;
   color: white;
+  transition: 0.2s;
+  transform: scale(1.05);
 }
 
 
