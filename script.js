@@ -1,153 +1,367 @@
-let categoriesData = [];
+// ==============================
+// Global Variables
+// ==============================
 let menuData = [];
+let categoriesData = [];
+
 let currentLanguage = "en";
-let currentMainIndex = 0;
+let currentCategoryIndex = 0;
 let currentSubIndex = 0;
 
+// DOM
 const slider = document.getElementById("categorySlider");
-const contentWrapper = document.getElementById("contentWrapper");
-const subCategoryBar = document.getElementById("subCategoryBar");
-const subButtons = document.getElementById("sub");
+const subBar = document.getElementById("subCategoryBar");
 const container = document.getElementById("menuContainer");
+const contentWrapper = document.getElementById("contentWrapper");
+const subButtons = document.getElementById("sub");
 
-const btnEn = document.getElementById("btn-en");
-const btnAr = document.getElementById("btn-ar");
 
-/* ================= Fetch Data ================= */
+// DOM caches
+const categoryDomCache = {};
+const subCategoryDomCache = {};
+
+// ==============================
+// Language Buttons
+// ==============================
+function englishBtnActive() {
+  document.getElementById("btn-en").classList.add("active");
+  document.getElementById("btn-ar").classList.remove("active");
+}
+
+function arabicBtnActive() {
+  document.getElementById("btn-ar").classList.add("active");
+  document.getElementById("btn-en").classList.remove("active");
+}
+
+englishBtnActive();
+
+// ==============================
+// Fetch Data
+// ==============================
 Promise.all([
-  fetch('categories.json').then(res => res.json()),
-  fetch('menu.json').then(res => res.json())
-]).then(([categories, menu]) => {
-  categoriesData = categories;
+  fetch("categories.json").then(r => r.json()),
+  fetch("menu.json").then(r => r.json())
+])
+.then(([categories, menu]) => {
+
+  categoriesData = categories.sort((a,b)=>a.order-b.order);
   menuData = menu;
 
-  createMainCategories();
-  createSubCategories();
-  renderItems();
-});
+  createCategories();
+  renderAllCategories();
+  preloadImages();
 
-/* ================= Language Switch ================= */
-btnEn.onclick = () => {
-  if (currentLanguage === "en") return;
+})
+.catch(err => console.error(err));
+
+
+// ==============================
+// Language Switch
+// ==============================
+document.getElementById("btn-en").onclick = () => {
+
+  if(currentLanguage === "en") return;
+
   currentLanguage = "en";
+  englishBtnActive();
 
   slider.dir = "ltr";
+  subBar.dir = "ltr";
   container.dir = "ltr";
   contentWrapper.dir = "ltr";
-  
-  btnEn.classList.add("active");
-  btnAr.classList.remove("active");
-  refreshUI();
-};
 
-btnAr.onclick = () => {
-  if (currentLanguage === "ar") return;
+  updateLanguage();
+}
+
+document.getElementById("btn-ar").onclick = () => {
+
+  if(currentLanguage === "ar") return;
+
   currentLanguage = "ar";
+  arabicBtnActive();
 
   slider.dir = "rtl";
+  subBar.dir = "rtl";
   container.dir = "rtl";
   contentWrapper.dir = "rtl";
 
-  // subCategoryBar.dir='rtl';
-  // document.getElementsByClassName("sub").dir="rtl"
-  btnAr.classList.add("active");
-  btnEn.classList.remove("active");
-  refreshUI();
-};
-
-function refreshUI() {
-  createMainCategories();
-  createSubCategories();
-  renderItems();
+  updateLanguage();
 }
 
-/* ================= Main Categories ================= */
-function createMainCategories() {
+
+// ==============================
+// Create Top Categories
+// ==============================
+function createCategories(){
+
   slider.innerHTML = "";
 
-  categoriesData.forEach((cat, index) => {
+  categoriesData.forEach((cat,index)=>{
+
     const btn = document.createElement("button");
-    btn.textContent = currentLanguage === "ar"
+
+    btn.innerText = currentLanguage==="ar"
       ? cat.arabic_category
       : cat.category;
 
-    if (index === currentMainIndex) btn.classList.add("active");
+    if(index===currentCategoryIndex)
+      btn.classList.add("active");
 
-    btn.onclick = () => switchMainCategory(index);
+    btn.onclick = ()=>switchCategory(index);
 
     slider.appendChild(btn);
+
   });
-}
 
-function switchMainCategory(index) {
-  if (index === currentMainIndex) return;
-  currentMainIndex = index;
-  currentSubIndex = 0;
-  createMainCategories();
   createSubCategories();
-  renderItems();
 }
 
-/* ================= Sub Categories ================= */
-function createSubCategories() {
-  subCategoryBar.innerHTML = "";
 
-  const mainCat = categoriesData[currentMainIndex];
+// ==============================
+// Create SubCategories
+// ==============================
+function createSubCategories(){
 
-  mainCat.sub_categories.forEach((sub, index) => {
+  const cat = categoriesData[currentCategoryIndex];
+
+  subBar.innerHTML="";
+
+  cat.sub_categories.forEach((sub,i)=>{
+
     const btn = document.createElement("button");
-    btn.id = "sub"
 
-    btn.textContent = currentLanguage === "ar"
+    btn.innerText = currentLanguage==="ar"
       ? sub.arabic_name
       : sub.name;
 
-    if (index === currentSubIndex) btn.classList.add("active");
+    if(i===currentSubIndex)
+      btn.classList.add("active");
 
-    btn.onclick = () => switchSubCategory(index);
+    btn.onclick = ()=>switchSubCategory(i);
 
-    subCategoryBar.appendChild(btn);
+    subBar.appendChild(btn);
+
   });
+
 }
 
-function switchSubCategory(index) {
-  if (index === currentSubIndex) return;
-  currentSubIndex = index;
+
+// ==============================
+// Render All Containers
+// ==============================
+function renderAllCategories(){
+
+  categoriesData.forEach(cat=>{
+
+    cat.sub_categories.forEach(sub=>{
+
+      const key = cat.category+"_"+sub.name;
+
+      const catContainer = document.createElement("div");
+
+      catContainer.className = "category-content";
+
+      catContainer.dataset.key = key;
+
+      catContainer.style.display="none";
+      // catContainer.style.gridTemplateColumns="repeat(auto-fill, minmax(180px, 1fr))";
+
+      const items = menuData.find(m =>
+        m.category === cat.category &&
+        m.sub_category === sub.name
+      )?.items || [];
+
+
+      items.forEach(item=>{
+        console.log(cat)
+
+        const itemName = currentLanguage==="ar"
+          ? item.arabic_name
+          : item.name;
+
+        const div = document.createElement("div");
+
+        div.className="menu-item";
+
+        div.innerHTML=`
+
+        <div class="menu-info">
+
+          <img
+          src="images/${sub.name}_files/${item.image}.jpg"
+          alt="${itemName}"
+          decoding="async"
+          fetchpriority="low">
+
+          <a class="itemName">${itemName}</a>
+
+          <a class="itemPrice">${item.price}</a>
+
+        </div>
+
+        `;
+
+        catContainer.appendChild(div);
+
+      });
+
+      container.appendChild(catContainer);
+
+      subCategoryDomCache[key]=catContainer;
+
+    });
+
+  });
+
+  showInitial();
+
+}
+
+
+// ==============================
+// Show first category/sub
+// ==============================
+function showInitial(){
+
+  const cat = categoriesData[currentCategoryIndex];
+  const sub = cat.sub_categories[currentSubIndex];
+
+  const key = cat.category+"_"+sub.name;
+
+  subCategoryDomCache[key].style.display="grid";
+
+}
+
+
+// ==============================
+// Switch Category
+// ==============================
+function switchCategory(index){
+
+  if(index===currentCategoryIndex) return;
+
+  hideCurrent();
+
+  currentCategoryIndex=index;
+  currentSubIndex=0;
+
+  document.querySelectorAll(".category-slider button")
+  .forEach(b=>b.classList.remove("active"));
+
+  slider.children[index].classList.add("active");
+
   createSubCategories();
-  renderItems();
+
+  showCurrent();
+
 }
 
-/* ================= Render Items ================= */
-function renderItems() {
-  container.innerHTML = "";
 
-  const mainCat = categoriesData[currentMainIndex].category;
-  const subCat = categoriesData[currentMainIndex]
-    .sub_categories[currentSubIndex].name;
+// ==============================
+// Switch SubCategory
+// ==============================
+function switchSubCategory(index){
 
-  const categoryData = menuData.find(m =>
-    m.category === mainCat &&
-    m.sub_category === subCat
-  );
+  if(index===currentSubIndex) return;
 
-  const items = categoryData?.items || [];
+  hideCurrent();
 
-  items.forEach(item => {
-    const name = currentLanguage === "ar"
-      ? item.arabic_name
-      : item.name;
+  currentSubIndex=index;
 
-    const div = document.createElement("div");
-    div.className = "menu-item";
+  document.querySelectorAll("#subCategoryBar button")
+  .forEach(b=>b.classList.remove("active"));
 
-    div.innerHTML = `
-      <div class="menu-info">
-        <img src="images/${subCat}_files/${item.image}.jpg" loading="lazy">
-        <div class="itemName">${name}</div>
-        <div class="itemPrice">${item.price}</div>
-      </div>
-    `;
+  subBar.children[index].classList.add("active");
 
-    container.appendChild(div);
+  showCurrent();
+
+}
+
+
+// ==============================
+// Helpers
+// ==============================
+function hideCurrent(){
+
+  const cat = categoriesData[currentCategoryIndex];
+  const sub = cat.sub_categories[currentSubIndex];
+
+  const key = cat.category+"_"+sub.name;
+
+  subCategoryDomCache[key].style.display="none";
+
+}
+
+function showCurrent(){
+
+  const cat = categoriesData[currentCategoryIndex];
+  const sub = cat.sub_categories[currentSubIndex];
+
+  const key = cat.category+"_"+sub.name;
+
+  subCategoryDomCache[key].style.display="grid";
+
+}
+
+
+// ==============================
+// Update Language
+// ==============================
+function updateLanguage(){
+
+  categoriesData.forEach(cat=>{
+
+    cat.sub_categories.forEach(sub=>{
+
+      const key = cat.category+"_"+sub.name;
+
+      const container = subCategoryDomCache[key];
+
+      const items = menuData.find(m =>
+        m.category===cat.category &&
+        m.sub_category===sub.name
+      )?.items || [];
+
+      const children = container.querySelectorAll(".menu-item");
+
+      children.forEach((child,i)=>{
+
+        child.querySelector(".itemName").textContent =
+          currentLanguage==="ar"
+          ? items[i].arabic_name
+          : items[i].name;
+
+        child.querySelector(".itemPrice").textContent =
+          items[i].price;
+
+      });
+
+    });
+
   });
+
+  createCategories();
+
+}
+
+
+// ==============================
+// Preload Images
+// ==============================
+function preloadImages(){
+
+  menuData.forEach(group=>{
+
+    group.items.forEach(item=>{
+
+      const img = new Image();
+
+      img.src = `images/${group.sub_category}_files/${item.image}.jpg`;
+
+      img.decoding="async";
+
+    });
+
+  });
+
 }
