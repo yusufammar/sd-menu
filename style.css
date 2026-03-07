@@ -113,8 +113,8 @@ body {
   align-self: flex-start;
   /* keep at top */
   /* height: 100vh; */
-  height: calc(100vh - 220px);
-  max-height: calc(100vh - 220px);
+  height: calc(100vh - 240px);
+  max-height: calc(100vh - 240px);
   overflow: hidden;
 }
 
@@ -123,12 +123,12 @@ body {
   /* width: 100vh; */
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180 px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
 
   overflow-y: auto;
   /* enable scroll */
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 240px);
   height: min-content;
   /* border-style: solid;
   border-color: black; */
@@ -166,7 +166,8 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: 0.3s;
-  height: min-content;
+  height: max-content;
+  /* width: max-content; */
 }
 
 .menu-item:hover {

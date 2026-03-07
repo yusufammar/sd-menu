@@ -42,17 +42,17 @@ Promise.all([
   fetch("categories.json").then(r => r.json()),
   fetch("menu.json").then(r => r.json())
 ])
-.then(([categories, menu]) => {
+  .then(([categories, menu]) => {
 
-  categoriesData = categories.sort((a,b)=>a.order-b.order);
-  menuData = menu;
+    categoriesData = categories.sort((a, b) => a.order - b.order);
+    menuData = menu;
 
-  createCategories();
-  renderAllCategories();
-  preloadImages();
+    createCategories();
+    renderAllCategories();
+    preloadImages();
 
-})
-.catch(err => console.error(err));
+  })
+  .catch(err => console.error(err));
 
 
 // ==============================
@@ -60,7 +60,7 @@ Promise.all([
 // ==============================
 document.getElementById("btn-en").onclick = () => {
 
-  if(currentLanguage === "en") return;
+  if (currentLanguage === "en") return;
 
   currentLanguage = "en";
   englishBtnActive();
@@ -75,7 +75,7 @@ document.getElementById("btn-en").onclick = () => {
 
 document.getElementById("btn-ar").onclick = () => {
 
-  if(currentLanguage === "ar") return;
+  if (currentLanguage === "ar") return;
 
   currentLanguage = "ar";
   arabicBtnActive();
@@ -92,22 +92,22 @@ document.getElementById("btn-ar").onclick = () => {
 // ==============================
 // Create Top Categories
 // ==============================
-function createCategories(){
+function createCategories() {
 
   slider.innerHTML = "";
 
-  categoriesData.forEach((cat,index)=>{
+  categoriesData.forEach((cat, index) => {
 
     const btn = document.createElement("button");
 
-    btn.innerText = currentLanguage==="ar"
+    btn.innerText = currentLanguage === "ar"
       ? cat.arabic_category
       : cat.category;
 
-    if(index===currentCategoryIndex)
+    if (index === currentCategoryIndex)
       btn.classList.add("active");
 
-    btn.onclick = ()=>switchCategory(index);
+    btn.onclick = () => switchCategory(index);
 
     slider.appendChild(btn);
 
@@ -120,24 +120,24 @@ function createCategories(){
 // ==============================
 // Create SubCategories
 // ==============================
-function createSubCategories(){
+function createSubCategories() {
 
   const cat = categoriesData[currentCategoryIndex];
 
-  subBar.innerHTML="";
+  subBar.innerHTML = "";
 
-  cat.sub_categories.forEach((sub,i)=>{
+  cat.sub_categories.forEach((sub, i) => {
 
     const btn = document.createElement("button");
 
-    btn.innerText = currentLanguage==="ar"
+    btn.innerText = currentLanguage === "ar"
       ? sub.arabic_name
       : sub.name;
 
-    if(i===currentSubIndex)
+    if (i === currentSubIndex)
       btn.classList.add("active");
 
-    btn.onclick = ()=>switchSubCategory(i);
+    btn.onclick = () => switchSubCategory(i);
 
     subBar.appendChild(btn);
 
@@ -149,13 +149,13 @@ function createSubCategories(){
 // ==============================
 // Render All Containers
 // ==============================
-function renderAllCategories(){
+function renderAllCategories() {
 
-  categoriesData.forEach(cat=>{
+  categoriesData.forEach(cat => {
 
-    cat.sub_categories.forEach(sub=>{
+    cat.sub_categories.forEach(sub => {
 
-      const key = cat.category+"_"+sub.name;
+      const key = cat.category + "_" + sub.name;
 
       const catContainer = document.createElement("div");
 
@@ -163,7 +163,7 @@ function renderAllCategories(){
 
       catContainer.dataset.key = key;
 
-      catContainer.style.display="none";
+      catContainer.style.display = "none";
       // catContainer.style.gridTemplateColumns="repeat(auto-fill, minmax(180px, 1fr))";
 
       const items = menuData.find(m =>
@@ -172,34 +172,30 @@ function renderAllCategories(){
       )?.items || [];
 
 
-      items.forEach(item=>{
-        console.log(cat)
+      items.forEach(item => {
+        // console.log(cat)
 
-        const itemName = currentLanguage==="ar"
+        const itemName = currentLanguage === "ar"
           ? item.arabic_name
           : item.name;
 
         const div = document.createElement("div");
 
-        div.className="menu-item";
+        div.className = "menu-item";
 
-        div.innerHTML=`
 
-        <div class="menu-info">
+        div.innerHTML = `
+            <div class="menu-info" onclick='goToFoodDetails(${JSON.stringify(item)},"${sub.name}")'>
+              <img
+                src="images/${sub.name}_files/${item.image}.jpg"
+                alt="${item.name}"
+                decoding="async"
+                fetchpriority="low">
 
-          <img
-          src="images/${sub.name}_files/${item.image}.jpg"
-          alt="${itemName}"
-          decoding="async"
-          fetchpriority="low">
-
-          <a class="itemName">${itemName}</a>
-
-          <a class="itemPrice">${item.price}</a>
-
-        </div>
-
-        `;
+              <a class="itemName">${item.name}</a>
+              <a class="itemPrice">${item.price}</a>
+                    </div>
+          `;
 
         catContainer.appendChild(div);
 
@@ -207,7 +203,7 @@ function renderAllCategories(){
 
       container.appendChild(catContainer);
 
-      subCategoryDomCache[key]=catContainer;
+      subCategoryDomCache[key] = catContainer;
 
     });
 
@@ -217,18 +213,28 @@ function renderAllCategories(){
 
 }
 
+function goToFoodDetails(foodJSON, subcategory) {
+  // console.log(foodJSON)
+  //  window.location.href = "item_details.html";
+  // window.location.href = "item_details.html?foodname=" + foodname + "&subcategory=" + subcategory;
+
+  localStorage.setItem("foodData", JSON.stringify(foodJSON));
+  localStorage.setItem("foodSubcategory", subcategory);
+  window.location.href = "item_details.html";
+}
+
 
 // ==============================
 // Show first category/sub
 // ==============================
-function showInitial(){
+function showInitial() {
 
   const cat = categoriesData[currentCategoryIndex];
   const sub = cat.sub_categories[currentSubIndex];
 
-  const key = cat.category+"_"+sub.name;
+  const key = cat.category + "_" + sub.name;
 
-  subCategoryDomCache[key].style.display="grid";
+  subCategoryDomCache[key].style.display = "grid";
 
 }
 
@@ -236,17 +242,17 @@ function showInitial(){
 // ==============================
 // Switch Category
 // ==============================
-function switchCategory(index){
+function switchCategory(index) {
 
-  if(index===currentCategoryIndex) return;
+  if (index === currentCategoryIndex) return;
 
   hideCurrent();
 
-  currentCategoryIndex=index;
-  currentSubIndex=0;
+  currentCategoryIndex = index;
+  currentSubIndex = 0;
 
   document.querySelectorAll(".category-slider button")
-  .forEach(b=>b.classList.remove("active"));
+    .forEach(b => b.classList.remove("active"));
 
   slider.children[index].classList.add("active");
 
@@ -260,16 +266,16 @@ function switchCategory(index){
 // ==============================
 // Switch SubCategory
 // ==============================
-function switchSubCategory(index){
+function switchSubCategory(index) {
 
-  if(index===currentSubIndex) return;
+  if (index === currentSubIndex) return;
 
   hideCurrent();
 
-  currentSubIndex=index;
+  currentSubIndex = index;
 
   document.querySelectorAll("#subCategoryBar button")
-  .forEach(b=>b.classList.remove("active"));
+    .forEach(b => b.classList.remove("active"));
 
   subBar.children[index].classList.add("active");
 
@@ -281,25 +287,25 @@ function switchSubCategory(index){
 // ==============================
 // Helpers
 // ==============================
-function hideCurrent(){
+function hideCurrent() {
 
   const cat = categoriesData[currentCategoryIndex];
   const sub = cat.sub_categories[currentSubIndex];
 
-  const key = cat.category+"_"+sub.name;
+  const key = cat.category + "_" + sub.name;
 
-  subCategoryDomCache[key].style.display="none";
+  subCategoryDomCache[key].style.display = "none";
 
 }
 
-function showCurrent(){
+function showCurrent() {
 
   const cat = categoriesData[currentCategoryIndex];
   const sub = cat.sub_categories[currentSubIndex];
 
-  const key = cat.category+"_"+sub.name;
+  const key = cat.category + "_" + sub.name;
 
-  subCategoryDomCache[key].style.display="grid";
+  subCategoryDomCache[key].style.display = "grid";
 
 }
 
@@ -307,29 +313,29 @@ function showCurrent(){
 // ==============================
 // Update Language
 // ==============================
-function updateLanguage(){
+function updateLanguage() {
 
-  categoriesData.forEach(cat=>{
+  categoriesData.forEach(cat => {
 
-    cat.sub_categories.forEach(sub=>{
+    cat.sub_categories.forEach(sub => {
 
-      const key = cat.category+"_"+sub.name;
+      const key = cat.category + "_" + sub.name;
 
       const container = subCategoryDomCache[key];
 
       const items = menuData.find(m =>
-        m.category===cat.category &&
-        m.sub_category===sub.name
+        m.category === cat.category &&
+        m.sub_category === sub.name
       )?.items || [];
 
       const children = container.querySelectorAll(".menu-item");
 
-      children.forEach((child,i)=>{
+      children.forEach((child, i) => {
 
         child.querySelector(".itemName").textContent =
-          currentLanguage==="ar"
-          ? items[i].arabic_name
-          : items[i].name;
+          currentLanguage === "ar"
+            ? items[i].arabic_name
+            : items[i].name;
 
         child.querySelector(".itemPrice").textContent =
           items[i].price;
@@ -348,17 +354,17 @@ function updateLanguage(){
 // ==============================
 // Preload Images
 // ==============================
-function preloadImages(){
+function preloadImages() {
 
-  menuData.forEach(group=>{
+  menuData.forEach(group => {
 
-    group.items.forEach(item=>{
+    group.items.forEach(item => {
 
       const img = new Image();
 
       img.src = `images/${group.sub_category}_files/${item.image}.jpg`;
 
-      img.decoding="async";
+      img.decoding = "async";
 
     });
 
