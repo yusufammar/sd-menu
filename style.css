@@ -1,12 +1,16 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+ 
   background: #f8f8f8;
   /* overflow: hidden; */
 }
 
-button{
-   color:black;
+button {
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
 }
 
 /* Toolbar */
@@ -20,6 +24,7 @@ button{
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
+   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .lang-btn {
@@ -28,6 +33,7 @@ button{
   padding: 10px 18px;
   border-radius: 20px;
   cursor: pointer;
+  box-shadow: 2px 4px 6px rgba(255, 255, 255, 0.2);
 }
 
 .lang-btn.active {
@@ -37,6 +43,8 @@ button{
 
 .logo img {
   object-fit: contain;
+  box-shadow: 2px 4px 6px rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
 }
 
 /* Main Category Slider */
@@ -81,12 +89,14 @@ button{
   border-radius: 20px;
   cursor: pointer;
   white-space: nowrap;
+
+
 }
 
 .category-slider button.active {
   background: #222;
   color: white;
-  transition: 0.2s;
+  transition: 0.4s ease;
   transform: scale(1.05);
 }
 
@@ -138,9 +148,9 @@ button{
   border-color: black; */
 }
 
-.menu-container{
+.menu-container {
   width: 100%;
-   /* border-style: solid;
+  /* border-style: solid;
   border-color: black; */
 
 }
@@ -153,13 +163,15 @@ button{
   border-radius: 8px;
   cursor: pointer;
   text-align: left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .sub-category-bar button.active {
   background: #222;
   color: white;
-  transition: 0.2s;
+  transition: 0.4s ease;
   transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -169,9 +181,10 @@ button{
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: 0.3s;
+  transition: 0.4s ease;
   height: max-content;
   /* width: max-content; */
+   
 }
 
 .menu-item:hover {
@@ -200,13 +213,3 @@ button{
   font-size: 14px;
   font-weight: bold;
 }
-
-/* RTL Support
-[dir="rtl"] .menu-info {
-  text-align: right;
-}
-
-[dir="rtl"] .sub-category-bar {
-  border-right: none;
-  border-left: 1px solid #ddd;
-} */
